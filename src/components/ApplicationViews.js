@@ -4,6 +4,7 @@ import Home from './home/Home'
 import AnimalList from './animal/AnimalList'
 import AnimalCard from './animal/AnimalCard'
 import AnimalDetail from './animal/AnimalDetail'
+import AnimalForm from './animal/AnimalForm'
 //only include these once they are built - previous practice exercise
 // import LocationCard from './location/LocationCard'
 // import EmployeeCard from './employee/EmployeeCard'
@@ -20,19 +21,22 @@ class ApplicationViews extends Component {
         }} />
         {/* Make sure you add the `exact` attribute here */}
         <Route exact path="/animals" render={(props) => {
-          return <AnimalList />
+          return <AnimalList {...props} />
         }} />
         <Route path="/animals/:animalId(\d+)" render={(props) => {
           console.log("Props from react-router-dom", props)
           console.log("This component's props", this.props)
           // Pass the animalId to the AnimalDetailComponent
-          return <AnimalDetail 
+          return <AnimalDetail
             animalId={parseInt(props.match.params.animalId)}
             // history={props.history}
             // match={props.match}
             // location={props.location}
             {...props}
           />
+        }} />
+        <Route path="/animals/new" render={(props) => {
+          return <AnimalForm {...props} />
         }} />
 
         {/*

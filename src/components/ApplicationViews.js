@@ -23,9 +23,16 @@ class ApplicationViews extends Component {
           return <AnimalList />
         }} />
         <Route path="/animals/:animalId(\d+)" render={(props) => {
-          console.log(props)
+          console.log("Props from react-router-dom", props)
+          console.log("This component's props", this.props)
           // Pass the animalId to the AnimalDetailComponent
-          return <AnimalDetail animalId={parseInt(props.match.params.animalId)} />
+          return <AnimalDetail 
+            animalId={parseInt(props.match.params.animalId)}
+            // history={props.history}
+            // match={props.match}
+            // location={props.location}
+            {...props}
+          />
         }} />
 
         {/*

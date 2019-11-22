@@ -5,6 +5,7 @@ import AnimalList from './animal/AnimalList'
 import AnimalDetail from './animal/AnimalDetail'
 import AnimalForm from './animal/AnimalForm'
 import Login from './auth/Login'
+import AnimalEditForm from './animal/AnimalEditForm'
 //only include these once they are built - previous practice exercise
 // import LocationCard from './location/LocationCard'
 // import EmployeeCard from './employee/EmployeeCard'
@@ -31,7 +32,7 @@ class ApplicationViews extends Component {
             return <Redirect to="/login" />
           }
         }} />
-        <Route path="/animals/:animalId(\d+)" render={(props) => {
+        <Route exact path="/animals/:animalId(\d+)" render={(props) => {
           console.log("Props from react-router-dom", props)
           console.log("This component's props", this.props)
           // Pass the animalId to the AnimalDetailComponent
@@ -43,6 +44,10 @@ class ApplicationViews extends Component {
             {...props}
           />
         }} />
+        <Route path="/animals/:animalId(\d+)/edit" render={props => {
+            return <AnimalEditForm {...props} />
+          }}
+        />
         <Route path="/animals/new" render={(props) => {
           return <AnimalForm {...props} />
         }} />

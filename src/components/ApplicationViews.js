@@ -6,11 +6,7 @@ import AnimalDetail from './animal/AnimalDetail'
 import AnimalForm from './animal/AnimalForm'
 import Login from './auth/Login'
 import AnimalEditForm from './animal/AnimalEditForm'
-//only include these once they are built - previous practice exercise
-// import LocationCard from './location/LocationCard'
-// import EmployeeCard from './employee/EmployeeCard'
-// import OwnerCard from './owner/OwnerCard'
-
+import EmployeeList from './employee/EmployeeList'
 
 class ApplicationViews extends Component {
 
@@ -23,6 +19,13 @@ class ApplicationViews extends Component {
       <React.Fragment>
         <Route exact path="/" render={(props) => {
           return <Home />
+        }} />
+        <Route exact path="/employees" render={props => {
+          if (this.isAuthenticated()) {
+            return <EmployeeList {...props} />
+          } else {
+            return <Redirect to="/login" />
+          }
         }} />
         {/* Make sure you add the `exact` attribute here */}
         <Route exact path="/animals" render={props => {

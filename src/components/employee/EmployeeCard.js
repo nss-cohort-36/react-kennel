@@ -10,11 +10,12 @@ class EmployeeCard extends Component {
           <button type="button"
             onClick={() => { this.props.history.push(`/employees/${this.props.employee.id}/edit`) }}>Edit</button>
           <button type="button" onClick={() => this.props.deleteAnimal(this.props.employee.id)}>Delete</button>
-          <Link to={`/employees/${this.props.employee.id}`}><button>Details</button></Link>
+          <button type="button"
+            onClick={() => { this.props.history.push(`/employees/${this.props.employee.id}/details`) }}>Details</button>
         </div>
-      </div>
-    );
-  }
-}
-
-export default EmployeeCard;
+        </div>
+        );
+      }
+    }
+    
+    export default EmployeeCard;

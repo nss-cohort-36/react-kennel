@@ -7,6 +7,7 @@ import AnimalForm from './animal/AnimalForm'
 import Login from './auth/Login'
 import AnimalEditForm from './animal/AnimalEditForm'
 import EmployeeList from './employee/EmployeeList'
+import EmployeeWithAnimals from './employee/EmployeeWithAnimals'
 
 class ApplicationViews extends Component {
 
@@ -26,6 +27,9 @@ class ApplicationViews extends Component {
           } else {
             return <Redirect to="/login" />
           }
+        }} />
+        <Route path="/employees/:employeeId(\d+)/details" render={(props) => {
+          return <EmployeeWithAnimals {...props} />
         }} />
         {/* Make sure you add the `exact` attribute here */}
         <Route exact path="/animals" render={props => {
@@ -48,8 +52,8 @@ class ApplicationViews extends Component {
           />
         }} />
         <Route path="/animals/:animalId(\d+)/edit" render={props => {
-            return <AnimalEditForm {...props} />
-          }}
+          return <AnimalEditForm {...props} />
+        }}
         />
         <Route path="/animals/new" render={(props) => {
           return <AnimalForm {...props} />

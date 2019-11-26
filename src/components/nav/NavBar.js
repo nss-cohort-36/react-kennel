@@ -14,9 +14,9 @@ class NavBar extends Component {
         <nav>
           <ul className="container">
             <li><Link className="nav-link" to="/">Home</Link></li>
-            <li><Link className="nav-link" to="/animals">Animals</Link></li>
+            {(this.props.user) ? <li><Link className="nav-link" to="/animals">Animals</Link></li> : null }
             <li>Locations</li>
-            <li><Link className="nav-link" to="/employees">Employees</Link></li>
+            {(this.props.user) ? <li><Link className="nav-link" to="/employees">Employees</Link></li> : null }
             <li>Owners</li>
           </ul>
         </nav>

@@ -59,3 +59,7 @@ fieldset input, fieldset button {
 fieldset .alignRight {
     text-align: right;
 }
+
+.uploadImage {
+    width: 500%;
+}

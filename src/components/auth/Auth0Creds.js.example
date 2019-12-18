@@ -1,0 +1,4 @@
+export const AUTH_CONFIG = {
+  domain: 'YOUR DOMAIN',
+  clientId: 'YOUR CLIENT ID'
+}

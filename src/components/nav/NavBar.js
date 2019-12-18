@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from "react-router-dom"
 import './NavBar.css'
+import auth0Client from '../auth/Auth';
 
 class NavBar extends Component {
 
   handleLogout = () => {
-    this.props.clearUser();
-    this.props.history.push('/');
+    auth0Client.signOut();
+    this.props.history.replace('/');
   }
 
   render() {
@@ -19,17 +20,24 @@ class NavBar extends Component {
           <ul className="container">
             <li><Link className="nav-link" to="/">Home</Link></li>
             <li>Locations</li>
-            {(this.props.user) ? 
-            <>
-            <li><Link className="nav-link" to="/animals">Animals</Link></li>
-            <li><Link className="nav-link" to="/employees">Employees</Link></li>
-            <li>Owners</li>
-            <li><span className="nav-link" onClick={this.handleLogout}>Logout</span></li>
-            </>
-            :
-            <li><Link className="nav-link" to="/login">Login</Link></li>
+            {auth0Client.isAuthenticated() &&
+              <>
+                <li><Link className="nav-link" to="/animals">Animals</Link></li>
+                <li><Link className="nav-link" to="/employees">Employees</Link></li>
+                <li>Owners</li>
+                <li>
+                  <label className="mr-2 text-white">{auth0Client.getProfile().name}</label>
+                </li>
+                <li>
+                  <button className="btn btn-dark" onClick={() => { this.handleLogout() }}>Sign Out</button>
+                </li>
+              </>
             }
-            
+            {!auth0Client.isAuthenticated() &&
+              <button className="btn btn-dark" onClick={auth0Client.signIn}>Sign In</button>
+
+            }
+
           </ul>
         </nav>
       </header>
